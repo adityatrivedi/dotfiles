@@ -71,10 +71,6 @@ Plugin 'xolox/vim-easytags'     " Update ctags on save
 Plugin 'xolox/vim-misc'         " Required for vim-easytags
 " }}}
 
-" Autocomplete {{{
-Plugin 'Valloric/YouCompleteMe' " Autocomplete for most programming languages
-" }}}
-
 " Snippets {{{
 Plugin 'SirVer/ultisnips'       " Provide user-editable snippets via triggers
 let g:UltiSnipsExpandTrigger="<C-j>"
