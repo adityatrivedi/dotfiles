@@ -116,6 +116,12 @@ alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
+### Clear screen
+alias c="clear"
+
+### Open current directory
+alias o="open ."
+
 ### Create and change into the newly created directory simultaneously
 mkcd() {
   mkdir -p "$*"
