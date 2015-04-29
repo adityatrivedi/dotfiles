@@ -122,6 +122,9 @@ alias c="clear"
 ### Open current directory
 alias o="open ."
 
+### Navigate to top of git working tree
+alias groot='cd $(git rev-parse --show-toplevel)'
+
 ### Create and change into the newly created directory simultaneously
 mkcd() {
   mkdir -p "$*"
