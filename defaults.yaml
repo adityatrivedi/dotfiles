@@ -1,6 +1,6 @@
 'NSGlobalDomain':
     # General > Use dark menu bar and Dock
-    'AppleInterfaceStyle':  'Dark'
+    'AppleInterfaceStyle':  'Light'
     # Keyboard > Shortcuts > Full Keyboard Access: All controls
     'AppleKeyboardUIMode': 3
     # Keyboard > Keyboard > Delay Until Repeat: Short
@@ -12,10 +12,10 @@
 'com.apple.Safari':
     # Safari > General > Open "safe" files after downloading
     'AutoOpenSafeDownloads': false
-    # Safari > Advanced > Smart Search Field: Show full website address
-    'ShowFullURLInSmartSearchField': true
+    # Safari > Advanced > Smart Search Field: Do not show full website address
+    'ShowFullURLInSmartSearchField': false
     # Safari > View > Show Status Bar
-    'ShowStatusBar': true
+    'ShowStatusBar': false
 'com.apple.dock':
     # Dock > Automatically hide and show the Dock
     'autohide': true
