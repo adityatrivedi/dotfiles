@@ -104,6 +104,9 @@ PROMPT_COMMAND='color=$(test_exit); __git_ps1 "$(get_virtualenv)$color\w$c_clear
 ### Enable colourized output for listing directory contents, append '/' to directories, and extra symbols after various filetypes for differentiation
 alias ls='ls -FAh'
 
+### Gradle clean build
+alias gcb='gradle clean build'
+
 ### Create shorthand for git
 alias g='git'
 __git_complete g __git_main
