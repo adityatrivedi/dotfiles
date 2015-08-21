@@ -1,18 +1,12 @@
 after-scripts:
 - brew linkapps
 casks:
-- basictex
 - caskroom/fonts/font-meslo-lg-for-powerline
-- dropbox
 - flux
 - google-chrome
-- heroku-toolbelt
 - iterm2
-- skim
 - slack
 - spectacle
-- spotify
-- spotify-notifications
 formulas:
 - ack
 - caskroom/cask/brew-cask
@@ -23,8 +17,6 @@ formulas:
 - ffind
 - git
 - hub
-- node
-- pandoc
 - python
 - python3
 - ruby
