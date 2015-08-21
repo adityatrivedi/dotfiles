@@ -1,6 +1,6 @@
 # dotfiles
 
-[Bash](https://www.gnu.org/software/bash/), [Zsh](http://www.zsh.org), [Vim](http://www.vim.org), and [Git](http://git-scm.com) dotfiles.
+[Bash](https://www.gnu.org/software/bash/), [Vim](http://www.vim.org), and [Git](http://git-scm.com) dotfiles.
 
 ![Vim screenshot](img/vim.png)
 
@@ -25,11 +25,9 @@ shells/:
   bash_profile        => ~/.bash_profile
   inputrc             => ~/.inputrc
   latexmkrc           => ~/.latexmkrc
-  zshrc               => ~/.zshrc
 ```
 
 - Feel free to add custom bash commands in `~/.bashrc`, it is sourced from `~/.bash_profile`
-- Feel free to add custom zsh commands in `~/.localrc`, it is sourced from `~/.zshrc`
 
 ### Vim
 
@@ -67,12 +65,6 @@ make vimcompletion
 ```
 
 - Installs [CMake](http://www.cmake.org) and [YouCompleteMe](http://valloric.github.io/YouCompleteMe/)
-
-## Switch to Zsh
-
-```bash
-make zsh
-```
 
 ## Uninstall
 
