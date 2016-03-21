@@ -33,7 +33,6 @@ Plugin 'jiangmiao/auto-pairs'   " Automatically close braces, parens, and quotes
 Plugin 'docunext/closetag.vim'  " HTML/XML tags will close automatically with '</'
 Plugin 'tpope/vim-endwise'      " Automatically close blocks
 Plugin 'jszakmeister/vim-togglecursor' " Change cursor shape in insert and replace modes
-Plugin 'altercation/vim-colors-solarized' " Solarized colorscheme
 Plugin 'editorconfig/editorconfig-vim' " Automatically adhere to project editor configurations
 let g:EditorConfig_exclude_patterns = ['fugitive://.*'] " Play nice with vim-fugitive
 " }}}
@@ -46,7 +45,6 @@ Plugin 'airblade/vim-gitgutter' " Show diff symbols in gutter
 
 " Status Line {{{
 Plugin 'bling/vim-airline'      " Supercharged statusline
-let g:airline_theme = 'solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " }}}
@@ -101,16 +99,12 @@ set synmaxcol=200               " Limit syntax highlighting by column number
 " }}}
 
 " Colorscheme {{{
-set background=light             " Prefer white style
+set background=dark             " Prefer dark style
 nnoremap <silent> <leader>b :let &background = ( &background ==? "dark" ? "light" : "dark" )<CR>:highlight Folded cterm=bold<CR>
-colorscheme solarized           " Use vim-colors-solarized plugin
 " Remove underline but keep bold in folds
 highlight Folded cterm=bold
 augroup highlights
   autocmd!
-  " Hide the cursor line when the split is not in focus
-  autocmd WinLeave * setlocal nocursorline
-  autocmd WinEnter * setlocal cursorline
   " Hide the column line when the split is not in focus
   autocmd WinLeave * setlocal colorcolumn=""
   autocmd WinEnter * setlocal colorcolumn=+1
