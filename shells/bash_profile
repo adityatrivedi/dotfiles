@@ -10,14 +10,8 @@ function pandocmark() {
   infile=$1
   outfile=$(basename "$infile")
   outfile=${outfile%.*}.html
-  pandoc -f markdown_github -t html5 -s "$infile" -o "$outfile"
+  pandoc -f markdown_github -t html5 --smart -s "$infile" -o "$outfile"
   open "$outfile"
-}
-
-### Compile Thrift files
-function dockerthrift() {
-  [[ "$#" -eq 1 ]] || { echo "Usage: thrift infile.thrift"; return; }
-  docker run -v "$PWD:/data" thrift thrift -o /data --gen java /data/$1
 }
 # }}}
 
@@ -30,13 +24,11 @@ HISTFILESIZE=10000
 # }}}
 
 # Exports {{{
+export PATH="/usr/local/bin:$PATH"
 export CLICOLOR=1
 export EDITOR="vim"
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-### Automatically configure Docker environment variables
-if hash docker-machine 2>/dev/null; then
-  eval "$(docker-machine env dev)"
-fi
+
 # }}}
 
 # Tab Completion {{{
@@ -111,6 +103,26 @@ alias gcb='gradle clean build'
 ### Move up one directory
 alias ..='cd ..'
 
+### Count number of lines
+alias lc='wc -l'
+
+### Create tar archives
+alias ctar='tar -cvf'
+alias ctarz='tar -cvzf'
+
+### Extract files from tar archives
+alias untar='tar -xvf'
+alias untarz='tar -xvzf'
+
+### Alias cat to [ccat](https://github.com/jingweno/ccat)
+hash ccat 2>/dev/null && alias cat='ccat'
+
+### Alias find to [ffind](https://github.com/sjl/friendly-find)
+hash ffind 2>/dev/null && alias find='ffind -S'
+
+### Alias diff to [colordiff](http://www.colordiff.org)
+hash colordiff 2>/dev/null && alias diff='colordiff'
+
 ### Create shorthand for git
 alias g='git'
 __git_complete g __git_main
@@ -119,7 +131,7 @@ __git_complete g __git_main
 hash hub 2>/dev/null && eval "$(hub alias -s)"
 
 ### Launch iOS Simulator
-SIMULATOR='/Applications/Xcode.app/Contents/Developer/Applications/iOS Simulator.app/'
+SIMULATOR='/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/'
 alias ios='open "$SIMULATOR"'
 
 ### Pretty print JSON

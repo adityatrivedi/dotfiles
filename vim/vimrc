@@ -99,16 +99,16 @@ set synmaxcol=200               " Limit syntax highlighting by column number
 " }}}
 
 " Colorscheme {{{
-set background=dark             " Prefer dark style
-nnoremap <silent> <leader>b :let &background = ( &background ==? "dark" ? "light" : "dark" )<CR>:highlight Folded cterm=bold<CR>
-" Remove underline but keep bold in folds
-highlight Folded cterm=bold
-augroup highlights
-  autocmd!
-  " Hide the column line when the split is not in focus
-  autocmd WinLeave * setlocal colorcolumn=""
-  autocmd WinEnter * setlocal colorcolumn=+1
-augroup END
+set background=dark             " Set default background colour
+nnoremap <silent> <leader>b :let &background = ( &background ==? "dark" ? "light" : "dark" )<CR>
+if exists('+colorcolumn')
+  augroup highlights
+    autocmd!
+    " Hide the column line when the split is not in focus
+    autocmd WinLeave * setlocal colorcolumn=""
+    autocmd WinEnter * setlocal colorcolumn=+1
+  augroup END
+endif
 " }}}
 
 " Basics {{{
@@ -118,8 +118,6 @@ set noshowmode                  " Hide default mode indicator
 set laststatus=2                " Always display status line
 set number                      " Show line numbers
 set ruler                       " Show the current row and column
-set cursorline                  " Highlight current line
-set linespace=4                 " Set line widths
 set display+=lastline           " Display as much as possible of long lines
 set scrolloff=10                " Scroll frame when close to top or bottom
 set sidescrolloff=20            " Scroll frame when close to left or right
@@ -128,9 +126,6 @@ set visualbell                  " Flash instead of beeping
 set title                       " Display `titlestring` as the TERM title
 set wildmenu                    " Show command-line completions in statusline
 set autoread                    " Automatically reread externally changed files
-set mouse=a                     " Allow mouse interaction, prevent scrolling console UI
-" Toggle mouse interaction to allow iTerm ⌘-Click in Vim
-noremap <silent> <leader>m :let &mouse = ( &mouse ==? "a" ? "" : "a" )<CR>
 set clipboard=unnamed           " Use system clipboard for yank and put
 set ttimeoutlen=50              " Set explicit timeout for mapped key sequences
 " }}}
@@ -145,9 +140,9 @@ augroup trailing
   au InsertEnter * :setlocal listchars-=trail:•
   au InsertLeave * :setlocal listchars+=trail:•
 augroup END
-set tabstop=2                   " Set literal tab width and display
-set softtabstop=2               " Set tab width for insertion and <BS>
-set shiftwidth=2                " Set CTRL-T, > (add indent) & CTRL-D, < (remove indent) widths
+set tabstop=4                   " Set literal tab width and display
+set softtabstop=4               " Set tab width for insertion and <BS>
+set shiftwidth=4                " Set CTRL-T, > (add indent) & CTRL-D, < (remove indent) widths
 set expandtab                   " Ensure tabs are expanded to spaces
 set smarttab                    " Insert shiftwidth tabs at start of line, softtabstop tabs elsewhere
 set shiftround                  " Round indents to multiples of shiftwidth
@@ -163,7 +158,9 @@ if exists("+breakindent")
   set breakindent               " Indent wrapped portion of lines to matching level
 endif
 set showbreak=↪                 " Use character to indicate wrapped lines
-set colorcolumn=+1              " Highlight the column after `textwidth`
+if exists('+colorcolumn')
+  set colorcolumn=+1            " Highlight the column after `textwidth`
+endif
 " Disabled Format Options {{{
 " t: Auto-wrap text using textwidth
 set formatoptions-=t
@@ -204,20 +201,21 @@ set splitright
 " }}}
 
 " Temporary Files {{{
-set undofile                    " Persist undo tree across launches
 " Store temporarily files globally instead of in working directory
 set backupdir=~/.vim/tmp/backup
-set directory=~/.vim/tmp/swap
-set undodir=~/.vim/tmp/undo
-" Make directories automatically if nonexistent
 if !isdirectory(expand(&backupdir))
   call mkdir(expand(&backupdir), "p")
 endif
+set directory=~/.vim/tmp/swap
 if !isdirectory(expand(&directory))
   call mkdir(expand(&directory), "p")
 endif
-if !isdirectory(expand(&undodir))
-  call mkdir(expand(&undodir), "p")
+if has('persistent_undo')
+  set undofile                  " Persist undo tree across launches
+  set undodir=~/.vim/tmp/undo
+  if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+  endif
 endif
 " }}}
 
@@ -226,6 +224,7 @@ endif
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <leader>vb :vsplit ~/.bash_profile<CR>
+nnoremap <leader>vz :vsplit ~/.zshrc<CR>
 nnoremap <leader>vg :vsplit ~/.gitconfig<CR>
 " Quickly source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
